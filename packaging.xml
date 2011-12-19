@@ -54,7 +54,7 @@
 
         <exec command="php -r &quot;\$data = json_decode(file_get_contents('composer.json'), true); \$ret = (isset(\$data['version']) &amp;&amp; \$data['version'] != '${version}') ? 1 : 0;exit(\$ret);&quot;" checkreturn="true" passthru="true"/>
         <!-- We need an extra PEAR version, as pear versions dont allow dashes and need to be DEVEL not DEV" -->
-        <exec command="php -r &quot;echo strtolower(str_replace(array('-DEV', '-'), array('DEVEL', ''), '${version}'));&quot;" outputProperty="pear.version"/>
+        <exec command="php -r &quot;echo strtoupper(str_replace(array('-DEV', '-'), array('DEVEL', ''), '${version}'));&quot;" outputProperty="pear.version"/>
         <echo msg="Preparing release of version ${version} (${pear.version}+${pear.stability})"/>
     </target>
 
