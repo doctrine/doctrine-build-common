@@ -12,6 +12,9 @@ require_once 'phing/Task.php';
  */
 class VersionIncrementTask extends Task
 {
+    /** Pattern to match unstable versions */
+    const UNSTABLE_PATTERN = '((-RC[0-9]+|-DEV|-ALPHA|-BETA))i';
+
     protected $version;
 
     protected $property;
@@ -33,12 +36,14 @@ class VersionIncrementTask extends Task
 
     public function main()
     {
-        $version = preg_replace('((-RC[0-9]+|-DEV|-ALPHA|-BETA))/i', '', $this->version);
+        $version = preg_replace(self::UNSTABLE_PATTERN, '', $this->version);
         $parts = explode(".", $version);
         if (count($parts) != 3) {
             throw new \InvalidArgumentException("Version is assumed in format x.y.z, $this->version given");
         }
-        $parts[2]++;
+        if (!preg_match(self::UNSTABLE_PATTERN, $this->version)) {
+            $parts[2]++;
+        }
         $this->project->setProperty($this->property, implode(".", $parts));
     }
 }
