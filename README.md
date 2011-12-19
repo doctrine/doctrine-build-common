@@ -3,7 +3,7 @@
 This project is a base submodule for all Doctrine projects that are using
 a build process yet. It handles versioning, making releases and distributing them.
 
-By the nature of phings limit capabilities we ship a bunch of additional tasks, that mimic Ants API as much as possible to allow future migration to Ant and possibly Manuel Piechlers [build-commons library](http://github.com/manuelpichler/build-commons).
+By the nature of phings limit capabilities we ship a bunch of additional tasks, that mimic Ants API as much as possible to allow future migration to Ant and possibly Manuel Pichlers [build-commons library](http://github.com/manuelpichler/build-commons).
 
 ## New tasks
 
