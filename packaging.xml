@@ -76,7 +76,7 @@
 
     <!-- Release files to Pirum directory if configured -->
     <target name="pirum-release" if="project.pirum_dir">
-        <exec command="sudo pirum add ${project.pirum_dir} ${dist.dir}/${project.name}-${version}.tgz" dir="." passthru="true"/>
+        <exec command="sudo pirum add ${project.pirum_dir} ${dist.dir}/${project.name}-${pear.version}.tgz" dir="." passthru="true"/>
     </target>
 
     <!-- Release files to a download directory if configured -->
