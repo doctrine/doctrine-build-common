@@ -46,7 +46,7 @@
             <contains string="${version}" substring="alpha" casesensitive="false"/>
         </condition>
         <condition property="pear.stability" value="dev">
-            <contains string="${version}" substring="devel" casesensitive="false"/>
+            <contains string="${version}" substring="dev" casesensitive="false"/>
         </condition>
         <condition property="pear.stability" value="beta">
             <contains string="${version}" substring="rc" casesensitive="false" />
