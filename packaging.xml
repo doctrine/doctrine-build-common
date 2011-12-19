@@ -112,7 +112,7 @@
         <exec command="git tag -m 'Tag ${release_version}' ${release_version}" passthru="true"/>
 
         <!-- calculate next version, assume that this is a mini version. -->
-        <versionincrement property="next_version" version="${version}" />
+        <versionincrement property="next_version" version="${release_version}" />
         <replace file="${project.basedir}/${project.version_file}" token="${release_version}" value="${next_version}-DEV"/>
         <replace file="${project.basedir}/composer.json" value="&quot;library&quot;," token="&quot;library&quot;,&quot;version&quot;:&quot;${release_version}&quot;,"/>
         <exec command="git add ${project.basedir}/${project.version_file} ${project.basedir}/composer.json" />
