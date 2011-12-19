@@ -30,3 +30,18 @@ Your build file for a build-common supported project has to look at least:
     # Version class and file
     project.version_class = Doctrine\DBAL\Version
     project.version_file = lib/Doctrine/DBAL/Version.php
+
+## Usage
+
+Git submodule this repository into your project. Currently has to be at:
+
+    lib/vendor/doctrine-build-common
+
+Then add the following into your build.xml:
+
+    <import file="${project.basedir}/lib/vendor/doctrine-build-common/packaging.xml" />
+
+Now define the target: define-pear-package. See [Common](https://github.com/doctrine/common/blob/master/build.xml#L55) for an example.
+
+Create the build.properties file with the necessary details (see above).
+
