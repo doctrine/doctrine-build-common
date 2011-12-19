@@ -33,7 +33,8 @@ class VersionIncrementTask extends Task
 
     public function main()
     {
-        $parts = explode(".", str_ireplace(array('-DEV', '-ALPHA', '-BETA'), '', $this->version));
+        $version = preg_replace('((-RC[0-9]+|-DEV|-ALPHA|-BETA))/i', '', $this->version);
+        $parts = explode(".", $version);
         if (count($parts) != 3) {
             throw new \InvalidArgumentException("Version is assumed in format x.y.z, $this->version given");
         }

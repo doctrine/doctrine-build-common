@@ -48,6 +48,9 @@
         <condition property="pear.stability" value="dev">
             <contains string="${version}" substring="devel" casesensitive="false"/>
         </condition>
+        <condition property="pear.stability" value="beta">
+            <contains string="${version}" substring="rc" casesensitive="false" />
+        </condition>
         <condition property="pear.stability" value="stable">
             <not><isset property="pear.stability"/></not>
         </condition>
@@ -110,7 +113,7 @@
 
         <!-- calculate next version, assume that this is a mini version. -->
         <versionincrement property="next_version" version="${version}" />
-        <replace file="${project.basedir}/${project.version_file}" token="${release_version}" value="${next_version}"/>
+        <replace file="${project.basedir}/${project.version_file}" token="${release_version}" value="${next_version}-DEV"/>
         <replace file="${project.basedir}/composer.json" value="&quot;library&quot;," token="&quot;library&quot;,&quot;version&quot;:&quot;${release_version}&quot;,"/>
         <exec command="git add ${project.basedir}/${project.version_file} ${project.basedir}/composer.json" />
         <exec command="git commit -m 'Bump dev version to ${next_version}'" />
