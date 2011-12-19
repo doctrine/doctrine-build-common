@@ -35,9 +35,6 @@
             <arg value="include '${project.basedir}/${project.version_file}';echo ${project.version_class}::VERSION;"/>
         </exec>
 
-        <!-- Cleanup submodules -->
-        <exec command="git submodule update --init" />
-
         <!-- Guessing the Stability for PEAR from the version -->
         <condition property="pear.stability" value="beta">
             <contains string="${version}" substring="beta" casesensitive="false"/>
