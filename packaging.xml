@@ -101,18 +101,16 @@
 
         <!-- start replacing versions in the code -->
         <replace file="${project.basedir}/${project.version_file}" token="${version}" value="${release_version}"/>
-        <replace file="${project.basedir}/composer.json" token="&quot;library&quot;," value="&quot;library&quot;,&quot;version&quot;:&quot;${release_version}&quot;,"/>
 
         <!-- Git commit this release commit -->
-        <exec command="git add ${project.basedir}/${project.version_file} ${project.basedir}/composer.json" passthru="true"/>
+        <exec command="git add ${project.basedir}/${project.version_file}" passthru="true"/>
         <exec command="git commit -m 'Release ${release_version}'" passthru="true"/>
         <exec command="git tag -m 'Tag ${release_version}' ${release_version}" passthru="true"/>
 
         <!-- calculate next version, assume that this is a mini version. -->
         <versionincrement property="next_version" version="${release_version}" />
         <replace file="${project.basedir}/${project.version_file}" token="${release_version}" value="${next_version}-DEV"/>
-        <replace file="${project.basedir}/composer.json" value="&quot;library&quot;," token="&quot;library&quot;,&quot;version&quot;:&quot;${release_version}&quot;,"/>
-        <exec command="git add ${project.basedir}/${project.version_file} ${project.basedir}/composer.json" />
+        <exec command="git add ${project.basedir}/${project.version_file}" />
         <exec command="git commit -m 'Bump dev version to ${next_version}'" />
 
         <echo msg="Made a git commit for version ${release_version} and tagged it." />
